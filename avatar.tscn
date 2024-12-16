@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwa7jrk33t3jd"]
+
+[ext_resource type="Script" path="res://avatar.gd" id="1_pbqin"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_pbqin")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="MeshInstance3D"]
