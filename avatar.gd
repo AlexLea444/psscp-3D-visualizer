@@ -5,7 +5,7 @@ var socket = StreamPeerTCP.new()
 
 # Visualization parameters
 var user_position = Vector2.ZERO
-var circle_radius = 300  # Radius of the speaker circle in pixels
+var circle_radius = 8  # Radius of the speaker circle in 3D
 
 func _ready():
 	# Connect to MATLAB TCP server
@@ -49,6 +49,14 @@ func _process(_delta):
 func update_user_position(radius, angle_degrees):
 	# Convert polar to Cartesian coordinates
 	var angle_radians = deg_to_rad(angle_degrees)
-	var x = radius * (circle_radius / 1200.0) * cos(angle_radians)  # Scale radius to fit
-	var z = -radius * (circle_radius / 1200.0) * sin(angle_radians)
-	position = Vector3(x, 0, z)
+	var x = radius * (8 / 1200.0) * cos(angle_radians)  # Scale radius to fit
+	var z = -radius * (8 / 1200.0) * sin(angle_radians)
+	position = Vector3(x, 0.5, z)
+
+func _exit_tree():
+	if socket == null:
+		return
+	socket.poll()
+	if socket.get_status() == StreamPeerTCP.STATUS_CONNECTED:
+		socket.disconnect_from_host()
+		print("Socket disconnected on game close.")

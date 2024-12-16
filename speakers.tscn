@@ -1,6 +1,35 @@
 [gd_scene load_steps=2 format=3 uid="uid://c7c0iouu8mq34"]
 
-[ext_resource type="Script" path="res://speakers.gd" id="1_pfr2t"]
+[ext_resource type="PackedScene" uid="uid://nqammq8b5mqd" path="res://speaker.tscn" id="2_pfnj5"]
 
 [node name="Speakers" type="Node3D"]
-script = ExtResource("1_pfr2t")
+
+[node name="Speaker" parent="." instance=ExtResource("2_pfnj5")]
+transform = Transform3D(0.92388, 0, 0.382683, 0, 1, 0, -0.382683, 0, 0.92388, 4.619, 0.5, -1.913)
+
+[node name="Speaker2" parent="." instance=ExtResource("2_pfnj5")]
+transform = Transform3D(0.382683, 0, 0.92388, 0, 1, 0, -0.92388, 0, 0.382683, 1.913, 0.5, -4.619)
+
+[node name="Speaker3" parent="." instance=ExtResource("2_pfnj5")]
+transform = Transform3D(-0.382683, 0, 0.92388, 0, 1, 0, -0.92388, 0, -0.382683, -1.913, 0.5, -4.619)
+skeleton = NodePath("../Speaker2")
+
+[node name="Speaker4" parent="." instance=ExtResource("2_pfnj5")]
+transform = Transform3D(-0.923879, 0, 0.382683, 0, 1, 0, -0.382683, 0, -0.923879, -4.619, 0.5, -1.913)
+skeleton = NodePath("../Speaker2")
+
+[node name="Speaker5" parent="." instance=ExtResource("2_pfnj5")]
+transform = Transform3D(-0.923879, 0, -0.382683, 0, 1, 0, 0.382683, 0, -0.923879, -4.619, 0.5, 1.913)
+skeleton = NodePath("../Speaker2")
+
+[node name="Speaker6" parent="." instance=ExtResource("2_pfnj5")]
+transform = Transform3D(-0.382684, 0, -0.923879, 0, 1, 0, 0.923879, 0, -0.382684, -1.913, 0.5, 4.619)
+skeleton = NodePath("../Speaker2")
+
+[node name="Speaker7" parent="." instance=ExtResource("2_pfnj5")]
+transform = Transform3D(0.382684, 0, -0.923879, 0, 1, 0, 0.923879, 0, 0.382684, 1.913, 0.5, 4.619)
+skeleton = NodePath("../Speaker2")
+
+[node name="Speaker8" parent="." instance=ExtResource("2_pfnj5")]
+transform = Transform3D(0.923879, 0, -0.382683, 0, 1, 0, 0.382683, 0, 0.923879, 4.619, 0.5, 1.913)
+skeleton = NodePath("../Speaker2")

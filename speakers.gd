@@ -1,6 +1,5 @@
 extends Node3D
 
-var circle_radius = 300  # Radius of the speaker circle in pixels
 var speakers = []
 var number_of_speakers = 8
 var radius_of_speakers = 5.0  # Radius in 3D space

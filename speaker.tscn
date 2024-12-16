@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://nqammq8b5mqd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_prntn"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vg3j4"]
+material = SubResource("StandardMaterial3D_prntn")
+
+[node name="Speaker" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_vg3j4")
