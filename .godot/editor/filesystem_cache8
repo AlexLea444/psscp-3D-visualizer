@@ -1,8 +1,0 @@
-ea4bc82a6ad023ab7ee23ee620429895
-::res://::1734308813
-avatar.gd::GDScript::-1::1734293534::0::1::::<>Node3D<>::
-avatar.tscn::PackedScene::6318955852991970813::1734300033::0::1::::<><>::res://avatar.gd
-icon.svg::CompressedTexture2D::2451853551208749769::1734291725::1734291729::1::::<><>::
-root.tscn::PackedScene::5865299699766785167::1734300033::0::1::::<><>::uid://c7c0iouu8mq34::::res://speakers.tscn<>uid://cwa7jrk33t3jd::::res://avatar.tscn
-speakers.gd::GDScript::-1::1734294039::0::1::::<>Node3D<>::
-speakers.tscn::PackedScene::7024546097658047749::1734300033::0::1::::<><>::res://speakers.gd

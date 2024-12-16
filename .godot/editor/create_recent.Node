@@ -1,9 +1,0 @@
-MeshInstance3D
-CollisionShape3D
-StaticBody3D
-DirectionalLight3D
-WorldEnvironment
-Node3D
-OmniLight3D
-Camera3D
-CSGSphere3D
