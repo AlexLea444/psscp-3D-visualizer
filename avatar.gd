@@ -10,7 +10,7 @@ var circle_radius = 8  # Radius of the speaker circle in 3D
 func _ready():
 	# Connect to MATLAB TCP server
 	# Attempt to connect to the MATLAB server
-	var result = socket.connect_to_host("127.0.0.1", 5000)
+	var result = socket.connect_to_host("127.0.0.1", 5002)
 	if result == OK:
 		print("Connection attempt started.")
 	else:
@@ -45,6 +45,9 @@ func _process(_delta):
 			var result = json.get_data()
 			if result.has("radius") and result.has("angle"):
 				update_user_position(result.radius, result.angle)
+			if result.has ("sounddegree"):
+				var sprite = get_parent().get_node("Node3D")
+				sprite.move_to_angle(result.sounddegree)
 
 func update_user_position(radius, angle_degrees):
 	# Convert polar to Cartesian coordinates

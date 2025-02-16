@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cptgvnjdiosjf"]
+[gd_scene load_steps=13 format=3 uid="uid://cptgvnjdiosjf"]
 
 [ext_resource type="PackedScene" uid="uid://c7c0iouu8mq34" path="res://speakers.tscn" id="2_ho0x2"]
 [ext_resource type="PackedScene" uid="uid://cwa7jrk33t3jd" path="res://avatar.tscn" id="3_unm18"]
+[ext_resource type="PackedScene" uid="uid://dnovnu81sm5tq" path="res://bird_orange.glb" id="6_iem40"]
+[ext_resource type="Script" path="res://node_3d.gd" id="6_rfcgp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_537pn"]
 
@@ -57,3 +59,11 @@ shape = SubResource("WorldBoundaryShape3D_3do31")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 mesh = SubResource("PlaneMesh_nx1fa")
 skin = SubResource("Skin_0tx5r")
+
+[node name="Node3D" type="Node3D" parent="."]
+script = ExtResource("6_rfcgp")
+
+[node name="Sketchfab_Scene" parent="Node3D" instance=ExtResource("6_iem40")]
+visible = false
+
+[node name="Node3D2" type="Node3D" parent="."]
