@@ -38,6 +38,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.214735, 0.976672, 0, -0.976672, 0.214735, 0, 8, 2)
+fov = 79.6
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera"]
 light_color = Color(1, 0.960784, 0.890196, 1)
