@@ -1,9 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://cptgvnjdiosjf"]
+[gd_scene load_steps=18 format=3 uid="uid://cptgvnjdiosjf"]
 
+[ext_resource type="Script" path="res://speakers.gd" id="2_f08ut"]
 [ext_resource type="PackedScene" uid="uid://c7c0iouu8mq34" path="res://speakers.tscn" id="2_ho0x2"]
 [ext_resource type="PackedScene" uid="uid://cwa7jrk33t3jd" path="res://avatar.tscn" id="3_unm18"]
+[ext_resource type="PackedScene" uid="uid://dw0m7elmuxjaw" path="res://steam_train.glb" id="6_0106h"]
 [ext_resource type="PackedScene" uid="uid://dnovnu81sm5tq" path="res://bird_orange.glb" id="6_iem40"]
 [ext_resource type="Script" path="res://node_3d.gd" id="6_rfcgp"]
+[ext_resource type="PackedScene" uid="uid://8l7yo1nxs4em" path="res://speaker_fnaf.glb" id="6_ysb5b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_537pn"]
 
@@ -22,16 +25,48 @@ volumetric_fog_density = 0.01
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_3do31"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cl0gc"]
-albedo_color = Color(0.333333, 0.2, 0, 1)
+albedo_color = Color(0.799368, 0.789763, 0.764108, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_nx1fa"]
 material = SubResource("StandardMaterial3D_cl0gc")
 
 [sub_resource type="Skin" id="Skin_0tx5r"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_x47ch"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ysqn"]
+transparency = 1
+blend_mode = 4
+albedo_color = Color(1, 1, 1, 0.415686)
+
 [node name="root" type="Node3D"]
 
 [node name="Speakers" parent="." instance=ExtResource("2_ho0x2")]
+script = ExtResource("2_f08ut")
+
+[node name="Speaker" parent="Speakers" index="0"]
+visible = false
+
+[node name="Speaker2" parent="Speakers" index="1"]
+visible = false
+
+[node name="Speaker3" parent="Speakers" index="2"]
+visible = false
+
+[node name="Speaker4" parent="Speakers" index="3"]
+visible = false
+
+[node name="Speaker5" parent="Speakers" index="4"]
+visible = false
+
+[node name="Speaker6" parent="Speakers" index="5"]
+visible = false
+
+[node name="Speaker7" parent="Speakers" index="6"]
+visible = false
+
+[node name="Speaker8" parent="Speakers" index="7"]
+visible = false
 
 [node name="Avatar" parent="." instance=ExtResource("3_unm18")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -67,4 +102,18 @@ script = ExtResource("6_rfcgp")
 [node name="Sketchfab_Scene" parent="Node3D" instance=ExtResource("6_iem40")]
 visible = false
 
+[node name="Sketchfab_Scene2" parent="Node3D" instance=ExtResource("6_0106h")]
+visible = false
+
 [node name="Node3D2" type="Node3D" parent="."]
+visible = false
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("6_ysb5b")]
+visible = false
+mesh = SubResource("BoxMesh_x47ch")
+
+[node name="Cube_1_0" parent="Sketchfab_Scene/Sketchfab_model/41b34a14fd34493b8589f85b7384aacf_fbx/RootNode/Cube" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_3ysqn")
+
+[editable path="Speakers"]
+[editable path="Sketchfab_Scene"]

@@ -2,18 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba6xw1ititim0"
-path.s3tc="res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex"
-path.etc2="res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.etc2.ctex"
+uid="uid://cxcjvvuw7anc4"
+path.s3tc="res://.godot/imported/speaker_fnaf_1.png-6609b77481064713bce7cff416dda666.s3tc.ctex"
+path.etc2="res://.godot/imported/speaker_fnaf_1.png-6609b77481064713bce7cff416dda666.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "a37484aae7f60ff6fb49961942772111"
+}
 
 [deps]
 
-source_file="res://icon.svg"
-dest_files=["res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex", "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.etc2.ctex"]
+source_file="res://speaker_fnaf_1.png"
+dest_files=["res://.godot/imported/speaker_fnaf_1.png-6609b77481064713bce7cff416dda666.s3tc.ctex", "res://.godot/imported/speaker_fnaf_1.png-6609b77481064713bce7cff416dda666.etc2.ctex"]
 
 [params]
 
@@ -34,6 +37,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=0
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
