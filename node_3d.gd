@@ -6,6 +6,7 @@ var model = null
 
 var animation_player: AnimationPlayer = null
 var current_tween: Tween = null
+var new_position = null
 
 @export var circle_radius: float = 5
 @export var current_angle: float = 0.0
@@ -49,7 +50,11 @@ func _process(_delta: float) -> void:
 		current_angle = rad_to_deg(lerp_angle(deg_to_rad(start_angle), deg_to_rad(target_angle), tween_progress))
 		
 		var radians = deg_to_rad(current_angle)
-		var new_position = circle_center + Vector3(cos(radians) * 1.35 * circle_radius, 0, 1.5500 * sin(radians) * circle_radius)
+		
+		if (model == 'bird'):
+			new_position = circle_center + Vector3(cos(radians) * 1.2 * circle_radius, 0, 1.35 * sin(radians) * circle_radius)
+		else:
+			new_position = circle_center + Vector3(cos(radians) * 1.08 * circle_radius, 0, 1.250 * sin(radians) * circle_radius)
 		model_root.global_transform.origin = new_position
 		
 		# Compute radial vector from the bird's position toward the center

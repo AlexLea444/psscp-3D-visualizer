@@ -1,10 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://cptgvnjdiosjf"]
+[gd_scene load_steps=16 format=3 uid="uid://cptgvnjdiosjf"]
 
 [ext_resource type="Script" path="res://speakers.gd" id="2_f08ut"]
 [ext_resource type="PackedScene" uid="uid://c7c0iouu8mq34" path="res://speakers.tscn" id="2_ho0x2"]
 [ext_resource type="PackedScene" uid="uid://cwa7jrk33t3jd" path="res://avatar.tscn" id="3_unm18"]
-[ext_resource type="PackedScene" uid="uid://dw0m7elmuxjaw" path="res://steam_train.glb" id="6_0106h"]
-[ext_resource type="PackedScene" uid="uid://dnovnu81sm5tq" path="res://bird_orange.glb" id="6_iem40"]
 [ext_resource type="Script" path="res://node_3d.gd" id="6_rfcgp"]
 [ext_resource type="PackedScene" uid="uid://8l7yo1nxs4em" path="res://speaker_fnaf.glb" id="6_ysb5b"]
 
@@ -44,36 +42,40 @@ albedo_color = Color(1, 1, 1, 0.415686)
 [node name="Speakers" parent="." instance=ExtResource("2_ho0x2")]
 script = ExtResource("2_f08ut")
 
-[node name="Speaker" parent="Speakers" index="0"]
+[node name="Speakers2" parent="." instance=ExtResource("2_ho0x2")]
+visible = true
+script = ExtResource("2_f08ut")
+
+[node name="Speaker" parent="Speakers2" index="0"]
 visible = false
 
-[node name="Speaker2" parent="Speakers" index="1"]
+[node name="Speaker2" parent="Speakers2" index="1"]
 visible = false
 
-[node name="Speaker3" parent="Speakers" index="2"]
+[node name="Speaker3" parent="Speakers2" index="2"]
 visible = false
 
-[node name="Speaker4" parent="Speakers" index="3"]
+[node name="Speaker4" parent="Speakers2" index="3"]
 visible = false
 
-[node name="Speaker5" parent="Speakers" index="4"]
+[node name="Speaker5" parent="Speakers2" index="4"]
 visible = false
 
-[node name="Speaker6" parent="Speakers" index="5"]
+[node name="Speaker6" parent="Speakers2" index="5"]
 visible = false
 
-[node name="Speaker7" parent="Speakers" index="6"]
+[node name="Speaker7" parent="Speakers2" index="6"]
 visible = false
 
-[node name="Speaker8" parent="Speakers" index="7"]
+[node name="Speaker8" parent="Speakers2" index="7"]
 visible = false
 
 [node name="Avatar" parent="." instance=ExtResource("3_unm18")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.214735, 0.976672, 0, -0.976672, 0.214735, 0, 8, 2)
-fov = 79.6
+transform = Transform3D(5, 0, 0, 0, 1.07368, 4.88336, 0, -4.88336, 1.07368, 0, 8, 3)
+fov = 97.5
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera"]
 light_color = Color(1, 0.960784, 0.890196, 1)
@@ -99,12 +101,6 @@ skin = SubResource("Skin_0tx5r")
 [node name="Node3D" type="Node3D" parent="."]
 script = ExtResource("6_rfcgp")
 
-[node name="Sketchfab_Scene" parent="Node3D" instance=ExtResource("6_iem40")]
-visible = false
-
-[node name="Sketchfab_Scene2" parent="Node3D" instance=ExtResource("6_0106h")]
-visible = false
-
 [node name="Node3D2" type="Node3D" parent="."]
 visible = false
 
@@ -116,4 +112,6 @@ mesh = SubResource("BoxMesh_x47ch")
 surface_material_override/0 = SubResource("StandardMaterial3D_3ysqn")
 
 [editable path="Speakers"]
+[editable path="Speakers2"]
+[editable path="Speakers2/Speaker"]
 [editable path="Sketchfab_Scene"]

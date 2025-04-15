@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://nqammq8b5mqd" path="res://speaker.tscn" id="2_pfnj5"]
 
 [node name="Speakers" type="Node3D"]
+visible = false
 
 [node name="Speaker" parent="." instance=ExtResource("2_pfnj5")]
 transform = Transform3D(0.92388, 0, 0.382683, 0, 1, 0, -0.382683, 0, 0.92388, 4.619, 0.5, -1.913)
