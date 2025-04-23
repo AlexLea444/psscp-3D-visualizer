@@ -22,15 +22,15 @@ var pos : Vector3 = Vector3.ZERO
 # Array to hold each sprite's state
 var instances: Array = []
 
-func hex_to_color(hex: String) -> Color:
-	var h = hex.trim_prefix("#")
-	assert(h.length() == 6)
-
-	# parse each pair of hex digits into 0–255
-	var r = int("0x" + h.substr(0,2))
-	var g = int("0x" + h.substr(2,2))
-	var b = int("0x" + h.substr(4,2))
-	return Color(r, g, b)
+#func hex_to_color(hex: String) -> Color:
+	#var h = hex.trim_prefix("#")
+	#assert(h.length() == 6)
+#
+	## parse each pair of hex digits into 0–255
+	#var r = int("0x" + h.substr(0,2))
+	#var g = int("0x" + h.substr(2,2))
+	#var b = int("0x" + h.substr(4,2))
+	#return Color(r, g, b)
 	
 func start_up(colorsArray : Array):
 	instance_count = len(colorsArray)
@@ -70,7 +70,7 @@ func start_up(colorsArray : Array):
 		var node = inst.node
 		add_child(node)
 		
-		var color_for_this := hex_to_color(colorsArray[i])  # your RGB tint
+		var color_for_this := Color(colorsArray[i])  # your RGB tint
 		tint_meshes(node, color_for_this)
 		
 		node.scale = model_scale
@@ -173,4 +173,4 @@ func _process(delta: float) -> void:
 		
 		if (inst.model_type == 'mega'):
 			node.rotate_y(deg_to_rad(90))  
-			position += Vector3(0, 1, 0)
+			node.position += Vector3(0, 1, 0)
