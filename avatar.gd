@@ -48,6 +48,7 @@ func _process(_delta):
 			if result.has("colors"):
 				#TODO: add config here to make it possible to choose other sprites and ignore colors
 				var sprites = get_parent().get_node("Node3D")
+				print(result.colors)
 				sprites.start_up(result.colors)
 				#establish colors here
 			if result.has ("sounddegree"):
