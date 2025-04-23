@@ -45,9 +45,14 @@ func _process(_delta):
 			var result = json.get_data()
 			if result.has("radius") and result.has("angle"):
 				update_user_position(result.radius, result.angle)
+			if result.has("colors"):
+				#TODO: add config here to make it possible to choose other sprites and ignore colors
+				var sprites = get_parent().get_node("Node3D")
+				sprites.start_up(result.colors)
+				#establish colors here
 			if result.has ("sounddegree"):
 				var sprite = get_parent().get_node("Node3D")
-				sprite.move_to_angle(result.sounddegree)
+				sprite.render_and_move(result.sounddegree)
 
 func update_user_position(radius, angle_degrees):
 	# Convert polar to Cartesian coordinates
