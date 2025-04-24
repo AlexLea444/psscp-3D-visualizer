@@ -2,6 +2,7 @@ extends Node3D
 
 # TCP Socket for communication
 var socket = StreamPeerTCP.new()
+var turn_on = true
 
 # Visualization parameters
 var user_position = Vector2.ZERO
@@ -46,11 +47,13 @@ func _process(_delta):
 			if result.has("radius") and result.has("angle"):
 				update_user_position(result.radius, result.angle)
 			if result.has("colors"):
-				#TODO: add config here to make it possible to choose other sprites and ignore colors
 				var sprites = get_parent().get_node("Node3D")
 				print(result.colors)
-				sprites.start_up(result.colors)
-				#establish colors here
+				# Edit models here if desired
+				var models := []
+				models.resize(result.colors.size())
+				models.fill("mega")
+				sprites.start_up(result.colors, models)
 			if result.has ("sounddegree"):
 				var sprite = get_parent().get_node("Node3D")
 				sprite.render_and_move(result.sounddegree)

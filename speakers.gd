@@ -4,32 +4,8 @@ var speakers = []
 var number_of_speakers = 8
 var radius_of_speakers = 5.0  # Radius in 3D space
 
-#func _ready():
-	#for i in range(number_of_speakers):
-		#var speaker_mesh = MeshInstance3D.new()
-		#speaker_mesh.mesh = BoxMesh.new()  # Replace with your speaker mesh
-		#add_child(speaker_mesh)
-		#
-		## Calculate position in a circle
-		#var angle = deg_to_rad(i * (360.0 / number_of_speakers))
-		#var x = cos(angle) * radius_of_speakers
-		#var z = sin(angle) * radius_of_speakers
-		#speaker_mesh.position = Vector3(x, 0, z)
-		#speakers.append(speaker_mesh)
 
 # Replace with this to customize speaker locations instead of hardcoded circle
-#var speaker_positions = [
-	#Vector2(5, 0),  #right mid
-	#Vector2(4.8, 3), #right bot
-	#Vector2(1.5, 4.75), #bottom right
-	#Vector2(-1.5, 4.75), #bottom right
-	#Vector2(-4.8, 3), #left bot
-	#Vector2(-5, 0), #left mid
-	#Vector2(-4.8, -3), #left top
-	#Vector2(-1.5, -4.75), #top left
-	#Vector2(1.5, -4.75), #top right
-	#Vector2(4.8, -3) #right top
-#]
 var speaker_positions = [
 4.5 * Vector2(-1.2750,   -0.5100),
    4.5 * Vector2(-1.2750,    0.4100),
@@ -66,8 +42,7 @@ func _ready():
 		var angle = atan2(pos.y, pos.x)
 		var adjusted_angle = PI / 2 - angle + deg_to_rad(180)
 		speaker_instance.rotate_y(adjusted_angle)
-		#print("Position: ", pos, " | Angle (radians): ", angle, " | Angle (degrees): ", rad_to_deg(angle))
-		#speaker_instance.rotate_y(deg_to_rad(275+rad_to_deg(angle)))
+		
 		make_transparent(speaker_instance)
 		add_child(speaker_instance)
 

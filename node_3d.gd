@@ -10,29 +10,19 @@ class SpriteState:
 	var tween: Tween
 	var active : bool
 	var color : Color
+	var movedYet := false
 
 # Number of sprites to instantiate and manage
 var instance_count: int 
 # Common configuration for circular path
 @export var circle_radius: float = 5.0
 @export var circle_center: Vector3 = Vector3.ZERO
-@export var model_type: String = "mega"
 var pos : Vector3 = Vector3.ZERO
 
 # Array to hold each sprite's state
 var instances: Array = []
-
-#func hex_to_color(hex: String) -> Color:
-	#var h = hex.trim_prefix("#")
-	#assert(h.length() == 6)
-#
-	## parse each pair of hex digits into 0–255
-	#var r = int("0x" + h.substr(0,2))
-	#var g = int("0x" + h.substr(2,2))
-	#var b = int("0x" + h.substr(4,2))
-	#return Color(r, g, b)
 	
-func start_up(colorsArray : Array):
+func start_up(colorsArray : Array, models : Array):
 	instance_count = len(colorsArray)
 	
 	var model_resource: PackedScene
@@ -44,12 +34,12 @@ func start_up(colorsArray : Array):
 		inst.active = false
 		inst.current_angle = start_ang
 		
-		# CHANGE ONCE WE GET AS PARAM
-		inst.model_type = "mega"
+		inst.model_type = models[i]
 		
 		match inst.model_type:
 			"bird":
 				model_resource = preload("res://bird_orange.glb") as PackedScene
+				model_scale = Vector3.ONE
 			"train":
 				model_resource = preload("res://steam_train.glb") as PackedScene
 				model_scale = Vector3(0.007, 0.007, 0.007)
@@ -57,7 +47,7 @@ func start_up(colorsArray : Array):
 				model_resource = preload("res://megaphone.glb") as PackedScene
 				model_scale = Vector3(0.2, 0.2, 0.2)
 			_: # unknown model type
-				push_error("Unknown model_type: %s" % model_type)
+				push_error("Unknown model_type: %s" % inst.model_type)
 				return
 		
 		inst.node          = model_resource.instantiate()
@@ -70,8 +60,9 @@ func start_up(colorsArray : Array):
 		var node = inst.node
 		add_child(node)
 		
-		var color_for_this := Color(colorsArray[i])  # your RGB tint
-		tint_meshes(node, color_for_this)
+		if inst.model_type == "mega":
+			var color_for_this := Color(colorsArray[i])  # your RGB tint
+			tint_meshes(node, color_for_this)
 		
 		node.scale = model_scale
 		# Position at its starting angle
@@ -103,33 +94,26 @@ func render_and_move(to_angles: Array) -> void:
 				inst.active = true
 				inst.node.visible = true
 				move_to_angle(id, to_angles[id])	
-		
-#func _input(event):
-	#var new_angles := {
-			#0: 30.0,
-			#1: 60.0,
-	#}
-	#
-	#var new_angles2 := {
-			#0 : 20.0,
-			#2: 120.0,
-	#}
-	#if event.is_action_pressed("ui_right"):
-		## Example: move sprite 0 clockwise by 30°
-		#render_and_move(new_angles)
-	#elif event.is_action_pressed("ui_left"):
-		## Example: move sprite 0 counterclockwise by 30°
-		#render_and_move(new_angles2)
 
 # Move a specific sprite (by index) to a new angle
 func move_to_angle(id: int, new_angle: float) -> void:
 	if id < 0 or id >= instances.size():
 		push_error("Invalid instance ID: %d" % id)
 		return
+		
 	var inst = instances[id]
+	
 	# Cancel any existing tween
 	if inst.tween:
 		inst.tween.kill()
+		
+	if !inst.movedYet:
+		inst.current_angle = new_angle
+		inst.movedYet = true
+		inst.start_angle   = new_angle
+		inst.target_angle  = new_angle
+		inst.tween_progress = 1.0
+		return
 	# Setup interpolation
 	inst.tween_progress = 0.0
 	inst.start_angle    = inst.current_angle
@@ -137,13 +121,7 @@ func move_to_angle(id: int, new_angle: float) -> void:
 	inst.tween = create_tween()
 	inst.tween.tween_property(inst, "tween_progress", 1.0, 1.0)
 	inst.tween.tween_callback(Callable(self, "_on_tween_completed").bind(id))
-	#inst["start_angle"] = inst["current_angle"]
-	#inst["target_angle"] = new_angle
-	#inst["tween_progress"] = 0.0
-	#inst["tween"] = create_tween()
-	#inst["tween"].tween_property(self, "tween_progress", 1.0, 1.0)
-	#inst["tween"].tween_callback(Callable(self, "_on_tween_completed").bind(id))
-
+	
 # Callback when a tween finishes
 func _on_tween_completed(id: int) -> void:
 	var inst = instances[id]
@@ -160,8 +138,8 @@ func _process(delta: float) -> void:
 		inst.current_angle = rad_to_deg(lerp_angle(deg_to_rad(inst.start_angle), deg_to_rad(inst.target_angle), inst.tween_progress))
 		var rad = deg_to_rad(inst.current_angle)
 		var node = inst.node
-		# Compute and apply new position
 		
+		# Compute and apply new position
 		if (inst.model_type == 'bird'):
 			pos = circle_center + Vector3(cos(rad) * 1.2 * circle_radius, 0, 1.35 * sin(rad) * circle_radius)
 		else:
